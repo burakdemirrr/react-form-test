@@ -3,7 +3,6 @@ import { formvalidation } from './formvalidation'
 function Form({setUser}) {
 
     const [errorMessage, setErrorMessage] = useState('')
-    const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -16,6 +15,7 @@ function Form({setUser}) {
 
     const handleSubmit=(e)=>{
         e.preventDefault();
+       
         const error=formvalidation(formData);
 
         if(error){
@@ -26,8 +26,9 @@ function Form({setUser}) {
         setUser(true);
     }
     const handleInputs=(e)=>{
+        const {placeholder,value}=e.target;
         setErrorMessage('');
-        setFormData({...formData,[e.target.placeholder]:e.target.value});
+        setFormData({...formData,[placeholder]:value});
     }
   return (
     <div>
